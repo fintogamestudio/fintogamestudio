@@ -1,1 +1,629 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FintoGames Studio | We Create Games</title>
+  <meta name="description" content="FintoGames Studio - Creating fun, engaging and memorable gaming experiences.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080812;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(8, 8, 18, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: #8b5cf6;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #a78bfa;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 25px 80px;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(124,58,237,0.25), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(236,72,153,0.18), transparent 35%),
+        #080812;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid rgba(167,139,250,0.4);
+      border-radius: 50px;
+      color: #c4b5fd;
+      background: rgba(139,92,246,0.1);
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 1.05;
+      margin-bottom: 25px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: #aaa;
+      max-width: 650px;
+      margin: auto;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #7c3aed, #db2777);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(139,92,246,0.3);
+    }
+
+    .btn-secondary {
+      border: 1px solid #33334a;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #151525;
+    }
+
+    /* GENERAL */
+    section {
+      padding: 100px 25px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #888;
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #0c0c18;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    .about-card {
+      padding: 45px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #151526, #0d0d19);
+      border: 1px solid #292940;
+      text-align: center;
+    }
+
+    .about-card .icon {
+      font-size: 65px;
+      margin-bottom: 15px;
+    }
+
+    /* GAMES */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .game-card {
+      background: #11111f;
+      border: 1px solid #27273b;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      border-color: #7c3aed;
+    }
+
+    .game-image {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      background:
+        linear-gradient(135deg, #312e81, #701a75);
+    }
+
+    .game-card:nth-child(2) .game-image {
+      background: linear-gradient(135deg, #064e3b, #164e63);
+    }
+
+    .game-card:nth-child(3) .game-image {
+      background: linear-gradient(135deg, #7f1d1d, #713f12);
+    }
+
+    .game-info {
+      padding: 25px;
+    }
+
+    .game-info h3 {
+      margin-bottom: 8px;
+    }
+
+    .game-info p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #c4b5fd;
+      background: rgba(139,92,246,0.12);
+    }
+
+    /* FEATURES */
+    .features {
+      background: #0c0c18;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .feature {
+      padding: 30px;
+      background: #11111f;
+      border: 1px solid #27273b;
+      border-radius: 16px;
+    }
+
+    .feature-icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      text-align: center;
+      padding: 50px 30px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #151526, #0d0d19);
+      border: 1px solid #292940;
+    }
+
+    .contact-box p {
+      color: #999;
+      margin: 15px auto 25px;
+    }
+
+    .email {
+      color: #a78bfa;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 20px;
+      text-align: center;
+      background: #050509;
+      border-top: 1px solid #181827;
+      color: #777;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: #a78bfa;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      nav ul {
+        gap: 12px;
+      }
+
+      nav ul li a {
+        font-size: 13px;
+      }
+
+      .about-grid,
+      .games-grid,
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        padding-top: 150px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="#home" class="logo">Finto<span>Games</span></a>
+
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+
+      <div class="badge">🎮 Independent Game Studio</div>
+
+      <h1>
+        We Create
+        <span class="gradient-text">Games</span>
+        People Love.
+      </h1>
+
+      <p>
+        Welcome to FintoGames Studio — where creativity, technology,
+        and imagination come together to create fun and memorable
+        gaming experiences.
+      </p>
+
+      <div class="buttons">
+        <a href="#games" class="btn btn-primary">Explore Our Games</a>
+        <a href="#contact" class="btn btn-secondary">Contact Us</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <h2 class="section-title">About FintoGames</h2>
+
+      <p class="section-subtitle">
+        We turn creative ideas into interactive experiences.
+      </p>
+
+      <div class="about-grid">
+
+        <div class="about-text">
+          <h3>Passion. Creativity. Games.</h3>
+
+          <p>
+            FintoGames Studio is an independent game development studio
+            focused on creating engaging, entertaining, and memorable
+            gaming experiences.
+          </p>
+
+          <p>
+            From original concepts to polished gameplay, we explore
+            new ideas, mechanics, and genres to create games that
+            players can enjoy and return to.
+          </p>
+
+          <p>
+            Our mission is simple: make games that are fun to play.
+          </p>
+        </div>
+
+        <div class="about-card">
+          <div class="icon">🎮</div>
+          <h3>Made With Passion</h3>
+          <p>
+            Every game starts with an idea and grows through creativity,
+            experimentation, and dedication.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GAMES -->
+  <section id="games">
+    <div class="container">
+
+      <h2 class="section-title">Our Games</h2>
+
+      <p class="section-subtitle">
+        Check out what we're building.
+      </p>
+
+      <div class="games-grid">
+
+        <div class="game-card">
+          <div class="game-image">🚀</div>
+
+          <div class="game-info">
+            <h3>Game Project One</h3>
+            <p>
+              An exciting new gaming experience currently
+              in development.
+            </p>
+
+            <span class="status">Coming Soon</span>
+          </div>
+        </div>
+
+
+        <div class="game-card">
+          <div class="game-image">⚔️</div>
+
+          <div class="game-info">
+            <h3>Game Project Two</h3>
+            <p>
+              A unique adventure filled with challenges,
+              exploration and fun.
+            </p>
+
+            <span class="status">In Development</span>
+          </div>
+        </div>
+
+
+        <div class="game-card">
+          <div class="game-image">🔥</div>
+
+          <div class="game-info">
+            <h3>Game Project Three</h3>
+            <p>
+              Something exciting is coming. Stay tuned
+              for more information.
+            </p>
+
+            <span class="status">Coming Soon</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container">
+
+      <h2 class="section-title">What We Believe</h2>
+
+      <p class="section-subtitle">
+        The principles behind our games.
+      </p>
+
+      <div class="features-grid">
+
+        <div class="feature">
+          <div class="feature-icon">💡</div>
+          <h3>Creative Ideas</h3>
+          <p>
+            We love turning fresh ideas into unique gameplay
+            experiences.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Player First</h3>
+          <p>
+            Our focus is creating games that are enjoyable,
+            accessible and rewarding.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🚀</div>
+          <h3>Keep Growing</h3>
+          <p>
+            We continuously learn, experiment and improve
+            with every project.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+
+      <div class="contact-box">
+
+        <h2 class="section-title">Let's Connect</h2>
+
+        <p>
+          Have a question, collaboration idea, or simply want
+          to say hello? We'd love to hear from you.
+        </p>
+
+        <!-- Replace this email with your real email -->
+        <a href="mailto:hello@fintogames.com" class="email">
+          hello@fintogames.com
+        </a>
+
+        <div class="buttons">
+          <a href="mailto:hello@fintogames.com"
+             class="btn btn-primary">
+            Email Us
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 <span>FintoGames Studio</span>. All rights reserved.
+  </footer>
+
+</body>
+</html>
